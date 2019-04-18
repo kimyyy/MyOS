@@ -24,9 +24,11 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 	 *   %V       Set output attribute to green color
 	 *   %r       Human readable version of a status code
 	 */
-	Print(L"\n%H*** UEFI:SIMPLE ***%N\n\n");
+	//Print(L"\n%H*** UEFI:SIMPLE ***%N\n\n");
 
-	Print(L"%EPress any key to exit.%N\n");
+    SystemTable->ConOut->ClearScreen(SystemTable->ConOut);
+    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Hello, kazbno!\n");
+	//Print(L"%EPress any key to exit.%N\n");
 	SystemTable->ConIn->Reset(SystemTable->ConIn, FALSE);
 	SystemTable->BootServices->WaitForEvent(1, &SystemTable->ConIn->WaitForKey, &Event);
 #if defined(_DEBUG)
